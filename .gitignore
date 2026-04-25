@@ -1,0 +1,7 @@
+/vendor/
+.env
+*.log
+docker/data/
+*.DS_Store
+.phpunit.result.cache
+/public/assets/icons/

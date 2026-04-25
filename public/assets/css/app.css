@@ -1,0 +1,45 @@
+/* Farm OS — Custom Styles */
+:root {
+  --farm-green: #2e7d32;
+  --farm-light: #e8f5e9;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f9fafb;
+}
+
+/* Feature mode toggle */
+body.feature-basic .advanced-only { display: none !important; }
+body.feature-advanced .advanced-only { display: block; }
+
+/* Sidebar / nav adjustments */
+.navbar-brand span { font-weight: 700; color: var(--farm-green); }
+
+/* Stat cards */
+.card { border-radius: 0.75rem; }
+
+/* Status badges */
+.badge.bg-brooding  { background: #fff3cd; color:#333; }
+.badge.bg-growing   { background: #d1ecf1; color:#333; }
+.badge.bg-laying    { background: #d4edda; color:#333; }
+
+/* Offline indicator */
+#offline-indicator {
+  position: fixed; bottom: 1rem; right: 1rem;
+  background: #ff5722; color: white;
+  padding: 0.5rem 1rem; border-radius: 999px;
+  font-size: 0.85rem; font-weight: 600;
+  display: none; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+#offline-indicator.show { display: block; }
+
+/* Mobile table tweak */
+@media (max-width: 576px) {
+  .table th, .table td { font-size: 0.8rem; padding: 0.4rem; }
+}
+
+/* Print PDF adjustments */
+@media print {
+  nav, .btn, form, #offline-indicator { display: none !important; }
+}

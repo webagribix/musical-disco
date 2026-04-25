@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS sales (
+  id           INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  batch_id     INT UNSIGNED   NOT NULL,
+  customer_id  INT UNSIGNED   NULL,
+  sale_type    ENUM('eggs','live_birds','dressed','manure','other') NOT NULL DEFAULT 'eggs',
+  quantity     INT UNSIGNED   NOT NULL,
+  unit_price   DECIMAL(15,2)  NOT NULL,
+  total_amount DECIMAL(15,2)  NOT NULL,
+  sale_date    DATE           NOT NULL,
+  payment_method ENUM('cash','mpesa','bank','credit') NOT NULL DEFAULT 'cash',
+  is_paid      TINYINT(1)     NOT NULL DEFAULT 1,
+  notes        TEXT           NULL,
+  recorded_by  INT UNSIGNED   NULL,
+  deleted_at   TIMESTAMP      NULL,
+  created_at   TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at   TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_batch_id  (batch_id),
+  INDEX idx_sale_type (sale_type),
+  INDEX idx_sale_date (sale_date),
+  INDEX idx_deleted_at(deleted_at),
+  CONSTRAINT fk_sale_batch FOREIGN KEY (batch_id) REFERENCES batches(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

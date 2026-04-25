@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS migrations_log (
+  id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  filename   VARCHAR(255)   NOT NULL UNIQUE,
+  ran_at     TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS metrics_snapshots (
+  id           INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  snapshot_date DATE         NOT NULL,
+  total_birds   INT UNSIGNED NOT NULL DEFAULT 0,
+  total_eggs    INT UNSIGNED NOT NULL DEFAULT 0,
+  total_revenue DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+  total_expenses DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+  active_batches INT UNSIGNED NOT NULL DEFAULT 0,
+  created_at    TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_date (snapshot_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

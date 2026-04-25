@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS batches (
+  id             INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  batch_name     VARCHAR(255)                                                        NOT NULL,
+  breed_id       INT UNSIGNED                                                        NULL,
+  house_id       INT UNSIGNED                                                        NULL,
+  initial_count  INT UNSIGNED                                                        NOT NULL,
+  placement_date DATE                                                                NOT NULL,
+  stage          ENUM('brooding','growing','point_of_lay','market_ready')            NOT NULL DEFAULT 'brooding',
+  status         ENUM('active','closed','sold_out')                                 NOT NULL DEFAULT 'active',
+  source         VARCHAR(255)                                                        NULL COMMENT 'hatchery or supplier name',
+  notes          TEXT                                                                NULL,
+  deleted_at     TIMESTAMP                                                           NULL,
+  created_at     TIMESTAMP                                                           NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at     TIMESTAMP                                                           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_stage      (stage),
+  INDEX idx_status     (status),
+  INDEX idx_house_id   (house_id),
+  INDEX idx_deleted_at (deleted_at),
+  CONSTRAINT fk_batch_breed FOREIGN KEY (breed_id) REFERENCES breeds(id) ON DELETE SET NULL,
+  CONSTRAINT fk_batch_house FOREIGN KEY (house_id) REFERENCES houses(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
