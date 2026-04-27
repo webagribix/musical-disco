@@ -35,6 +35,11 @@ class FinancialWebController
         $pl       = new PLService($lc, $fcr);
         $plData   = $batchId ? $pl->compute($batchId) : null;
         $batches  = \App\Core\DB::getInstance()->selectWhere('batches', 'deleted_at IS NULL', [], ['order_by' => 'batch_name ASC']);
-        $res->view('financial/pl_report', ['plData' => $plData, 'batches' => $batches, 'batchId' => $batchId]);
+        $res->view('financial/pl_report', [
+            'pl'       => $plData,
+            'batchName'=> $plData['batch_name'] ?? '',
+            'batchId'  => $batchId,
+            'batches'  => $batches,
+        ]);
     }
 }

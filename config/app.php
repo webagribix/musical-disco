@@ -1,4 +1,5 @@
 <?php
+define('APP_ENV', $_ENV['APP_ENV'] ?? 'production');
 define('APP_NAME', 'PoultryOS Kenya');
 define('APP_VERSION', '1.0.0');
 define('APP_CURRENCY', 'KES');

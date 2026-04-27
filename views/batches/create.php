@@ -1,4 +1,4 @@
-<?php /** @var array $breeds @var array $houses @var array|null $batch @var bool $edit */ include __DIR__ . '/../layout/nav.php'; ?>
+<?php /** @var array $breeds @var array $houses @var array|null $batch @var bool $edit */ ?>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><title><?= isset($edit) ? 'Edit' : 'New' ?> Batch — <?= APP_NAME ?></title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">

@@ -23,8 +23,18 @@ class PLService
         $totalExpenses = Expense::totalForBatch($batchId);
         $netProfit     = $totalRevenue - $totalExpenses;
 
-        $revenueByType  = Sale::revenueByType($batchId);
+        $revenueByType     = Sale::revenueByType($batchId);
         $expenseByCategory = Expense::byCategory($batchId);
+
+        // Build keyed maps for view convenience
+        $revenueKeyed = [];
+        foreach ($revenueByType as $row) {
+            $revenueKeyed[$row['sale_type']] = (float) $row['revenue'];
+        }
+        $expensesKeyed = [];
+        foreach ($expenseByCategory as $row) {
+            $expensesKeyed[$row['category']] = (float) $row['total'];
+        }
 
         $liveCount = $this->liveCountService->getLiveCount($batchId);
         $fcr       = $this->fcrService->calculate($batchId);
@@ -44,6 +54,8 @@ class PLService
             'total_revenue'       => round($totalRevenue, 2),
             'total_expenses'      => round($totalExpenses, 2),
             'net_profit'          => round($netProfit, 2),
+            'revenue'             => $revenueKeyed,
+            'expenses'            => $expensesKeyed,
             'revenue_by_type'     => $revenueByType,
             'expenses_by_category'=> $expenseByCategory,
             'live_count'          => $liveCount,

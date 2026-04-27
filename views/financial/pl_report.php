@@ -17,11 +17,11 @@
     <div class="table-responsive">
       <table class="table mb-0">
         <tbody>
-          <tr><td>Egg Sales</td><td class="text-end"><?= CURRENCY_SYMBOL ?><?= number_format($pl['revenue']['eggs'] ?? 0, 2) ?></td></tr>
-          <tr><td>Bird Sales</td><td class="text-end"><?= CURRENCY_SYMBOL ?><?= number_format($pl['revenue']['birds'] ?? 0, 2) ?></td></tr>
-          <tr><td>Manure</td><td class="text-end"><?= CURRENCY_SYMBOL ?><?= number_format($pl['revenue']['manure'] ?? 0, 2) ?></td></tr>
-          <tr><td>Other</td><td class="text-end"><?= CURRENCY_SYMBOL ?><?= number_format($pl['revenue']['other'] ?? 0, 2) ?></td></tr>
-          <tr class="fw-bold table-success"><td>Total Revenue</td><td class="text-end"><?= CURRENCY_SYMBOL ?><?= number_format($pl['total_revenue'] ?? 0, 2) ?></td></tr>
+          <tr><td>Egg Sales</td><td class="text-end"><?= APP_CURRENCY . ' ' ?><?= number_format($pl['revenue']['eggs'] ?? 0, 2) ?></td></tr>
+          <tr><td>Bird Sales</td><td class="text-end"><?= APP_CURRENCY . ' ' ?><?= number_format($pl['revenue']['birds'] ?? 0, 2) ?></td></tr>
+          <tr><td>Manure</td><td class="text-end"><?= APP_CURRENCY . ' ' ?><?= number_format($pl['revenue']['manure'] ?? 0, 2) ?></td></tr>
+          <tr><td>Other</td><td class="text-end"><?= APP_CURRENCY . ' ' ?><?= number_format($pl['revenue']['other'] ?? 0, 2) ?></td></tr>
+          <tr class="fw-bold table-success"><td>Total Revenue</td><td class="text-end"><?= APP_CURRENCY . ' ' ?><?= number_format($pl['total_revenue'] ?? 0, 2) ?></td></tr>
         </tbody>
       </table>
     </div>
@@ -34,9 +34,9 @@
       <table class="table mb-0">
         <tbody>
           <?php foreach ($pl['expenses'] ?? [] as $cat => $amt): ?>
-            <tr><td><?= ucfirst($cat) ?></td><td class="text-end"><?= CURRENCY_SYMBOL ?><?= number_format($amt, 2) ?></td></tr>
+            <tr><td><?= ucfirst($cat) ?></td><td class="text-end"><?= APP_CURRENCY . ' ' ?><?= number_format($amt, 2) ?></td></tr>
           <?php endforeach; ?>
-          <tr class="fw-bold table-danger"><td>Total Expenses</td><td class="text-end"><?= CURRENCY_SYMBOL ?><?= number_format($pl['total_expenses'] ?? 0, 2) ?></td></tr>
+          <tr class="fw-bold table-danger"><td>Total Expenses</td><td class="text-end"><?= APP_CURRENCY . ' ' ?><?= number_format($pl['total_expenses'] ?? 0, 2) ?></td></tr>
         </tbody>
       </table>
     </div>
@@ -47,9 +47,9 @@
   <div class="card shadow-sm border-<?= $isProfit ? 'success' : 'danger' ?>">
     <div class="card-body text-center">
       <h5 class="fw-bold">Net <?= $isProfit ? 'Profit' : 'Loss' ?></h5>
-      <div class="display-5 fw-bold text-<?= $isProfit ? 'success' : 'danger' ?>"><?= CURRENCY_SYMBOL ?><?= number_format(abs($net), 2) ?></div>
+      <div class="display-5 fw-bold text-<?= $isProfit ? 'success' : 'danger' ?>"><?= APP_CURRENCY . ' ' ?><?= number_format(abs($net), 2) ?></div>
       <?php if (!empty($pl['cost_per_bird'])): ?>
-        <div class="mt-2 text-muted">Cost/Bird: <?= CURRENCY_SYMBOL ?><?= number_format($pl['cost_per_bird'],2) ?> &nbsp;|&nbsp; Cost/Egg: <?= CURRENCY_SYMBOL ?><?= number_format($pl['cost_per_egg'] ?? 0,2) ?></div>
+        <div class="mt-2 text-muted">Cost/Bird: <?= APP_CURRENCY . ' ' ?><?= number_format($pl['cost_per_bird'],2) ?> &nbsp;|&nbsp; Cost/Egg: <?= APP_CURRENCY . ' ' ?><?= number_format($pl['cost_per_egg'] ?? 0,2) ?></div>
       <?php endif; ?>
     </div>
   </div>

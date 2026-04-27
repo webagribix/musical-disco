@@ -9,13 +9,13 @@ foreach ($argv as $arg) {
     if (str_starts_with($arg, '--env=')) $env = substr($arg, 6);
 }
 
-require __DIR__ . '/config/database.php';
-$cfg = $databases[$env] ?? $databases['mysql'];
+$dbConfig = require __DIR__ . '/config/database.php';
+$cfg = $dbConfig['connections'][$env] ?? $dbConfig['connections']['mysql'];
 
 $dsn = "mysql:host={$cfg['host']};port={$cfg['port']};charset={$cfg['charset']}";
 $pdo = new PDO($dsn, $cfg['username'], $cfg['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-$pdo->exec("CREATE DATABASE IF NOT EXISTS `{$cfg['database']}`");
-$pdo->exec("USE `{$cfg['database']}`");
+$pdo->exec("CREATE DATABASE IF NOT EXISTS `{$cfg['dbname']}`");
+$pdo->exec("USE `{$cfg['dbname']}`");
 $pdo->exec("CREATE TABLE IF NOT EXISTS migrations_log (id INT AUTO_INCREMENT PRIMARY KEY, filename VARCHAR(255) NOT NULL UNIQUE, applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
 
 $applied = $pdo->query("SELECT filename FROM migrations_log")->fetchAll(PDO::FETCH_COLUMN);

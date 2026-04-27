@@ -1,6 +1,5 @@
 <?php
 /** @var int $totalLive @var int $todayMortality @var int $todayEggs @var int $pendingVaccinations @var int $activeAlerts @var int $activeBatches @var array $envLogs @var array $todayTasks @var string $eggChart @var string $feedChart */
-include __DIR__ . '/../layout/nav.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

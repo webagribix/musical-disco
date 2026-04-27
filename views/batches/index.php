@@ -1,4 +1,4 @@
-<?php /** @var array $batches */ include __DIR__ . '/../layout/nav.php'; ?>
+<?php /** @var array $batches */ ?>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><title>Batches — <?= APP_NAME ?></title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
