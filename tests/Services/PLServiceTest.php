@@ -9,8 +9,8 @@ class PLServiceTest extends TestCase
     /** Mirrors PLService::calculate() formula */
     private function calculate(array $revenue, array $expenses, int $liveCount, int $totalEggsSold): array
     {
-        $totalRevenue  = array_sum($revenue);
-        $totalExpenses = array_sum($expenses);
+        $totalRevenue  = (float) array_sum($revenue);
+        $totalExpenses = (float) array_sum($expenses);
         $netProfit     = $totalRevenue - $totalExpenses;
         $costPerBird   = $liveCount > 0 ? round($totalExpenses / $liveCount, 2) : 0.0;
         $costPerEgg    = $totalEggsSold > 0 ? round($totalExpenses / $totalEggsSold, 4) : 0.0;
